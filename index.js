@@ -7,18 +7,26 @@ server.use(express.json());
 
 const tweets = [];
 const users = [];
+let avatar;
 
 server.get("/tweets", function (req, res) {
-  res.send(tweets);
+    const feed = tweets.slice(-10);
+  res.send(feed);
 });
 
 server.post("/tweets", function (req, res) {
-  tweets.push(req.body);
-  res.send("OK");
+  const newTweet = {
+    username: req.body.username,
+    avatar: avatar,
+    tweet: req.body.tweet
+  };
+  tweets.push(newTweet);
+  res.send('OK');
 });
 
 server.post("/sign-up", function (req, res) {
   users.push(req.body);
+    avatar = req.body.avatar;
   res.send("OK");
 });
 
