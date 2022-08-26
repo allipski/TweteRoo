@@ -13,12 +13,13 @@ server.get("/tweets", function (req, res) {
 });
 
 server.post("/tweets", function (req, res) {
-  res.send("Postar um tweet");
+  tweets.push(req.body);
+  res.send("OK");
 });
 
 server.post("/sign-up", function (req, res) {
   users.push(req.body);
-  res.send(users);
+  res.send("OK");
 });
 
 server.listen(5000, function () {
